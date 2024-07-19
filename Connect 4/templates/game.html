@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <style>
+        body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    }
+        .header {
+    position: absolute;
+    top: -1.3cm;
+    width: 100%;
+    text-align: center;
+}
+
+        .title {
+    font-size: 3em;
+    font-weight: bold;
+    }
+
+        .players {
+    margin-top: 0.64cm;
+    display: flex;
+    justify-content: space-between;
+    }
+
+        .player {
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    }
+
+        .color-box {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    }
+
+        .left {
+    margin-right: auto;
+    }
+
+        .right {
+    margin-left: auto;
+    }
+
+        .rectangle {
+    width: 21cm;
+    height: 15.225cm;
+    background-color: skyblue;
+    border-radius: 0.6cm;
+    border: 0.0525cm solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125em;
+    color: #000;
+    position: relative;
+    }
+        .circle {
+    position: absolute;
+    background-color: white;
+    width: 1.47cm;
+    height: 1.47cm;
+    border-radius: 50%;
+    }
+        .view {
+    width: 3cm;
+    height: 15.225cm;
+    border-radius: 0.6225cm;
+    transition: all 0.3s;
+    }
+    .view:hover {
+    background: black; opacity: 0.2;
+    }
+    .red {
+    background-color: red;
+    }
+    .yellow {
+    background-color: yellow;
+    }
+/* the 42 circles that can be played*/
+        .circle:nth-child(1) { bottom: 0.75cm; left: 0.75cm; }
+        .circle:nth-child(2) { bottom: 0.75cm; left: 3.75cm; }
+        .circle:nth-child(3) { bottom: 0.75cm; left: 6.75cm; }
+        .circle:nth-child(4) { bottom: 0.75cm; left: 9.75cm; }
+        .circle:nth-child(5) { bottom: 0.75cm; left: 12.75cm; }
+        .circle:nth-child(6) { bottom: 0.75cm; left: 15.75cm; }
+        .circle:nth-child(7) { bottom: 0.75cm; left: 18.75cm; }
+        .circle:nth-child(8) { bottom: 3.24cm; left: 0.75cm; }
+        .circle:nth-child(9) { bottom: 3.24cm; left: 3.75cm; }
+        .circle:nth-child(10) { bottom: 3.24cm; left: 6.75cm; }
+        .circle:nth-child(11) { bottom: 3.24cm; left: 9.75cm; }
+        .circle:nth-child(12) { bottom: 3.24cm; left: 12.75cm; }
+        .circle:nth-child(13) { bottom: 3.24cm; left: 15.75cm; }
+        .circle:nth-child(14) { bottom: 3.24cm; left: 18.75cm; }
+        .circle:nth-child(15) { bottom: 5.73cm; left: 0.75cm; }
+        .circle:nth-child(16) { bottom: 5.73cm; left: 3.75cm; }
+        .circle:nth-child(17) { bottom: 5.73cm; left: 6.75cm; }
+        .circle:nth-child(18) { bottom: 5.73cm; left: 9.75cm; }
+        .circle:nth-child(19) { bottom: 5.73cm; left: 12.75cm; }
+        .circle:nth-child(20) { bottom: 5.73cm; left: 15.75cm; }
+        .circle:nth-child(21) { bottom: 5.73cm; left: 18.75cm; }
+        .circle:nth-child(22) { bottom: 8.22cm; left: 0.75cm; }
+        .circle:nth-child(23) { bottom: 8.22cm; left: 3.75cm; }
+        .circle:nth-child(24) { bottom: 8.22cm; left: 6.75cm; }
+        .circle:nth-child(25) { bottom: 8.22cm; left: 9.75cm; }
+        .circle:nth-child(26) { bottom: 8.22cm; left: 12.75cm; }
+        .circle:nth-child(27) { bottom: 8.22cm; left: 15.75cm; }
+        .circle:nth-child(28) { bottom: 8.22cm; left: 18.75cm; }
+        .circle:nth-child(29) { bottom: 10.71cm; left: 0.75cm; }
+        .circle:nth-child(30) { bottom: 10.71cm; left: 3.75cm; }
+        .circle:nth-child(31) { bottom: 10.71cm; left: 6.75cm; }
+        .circle:nth-child(32) { bottom: 10.71cm; left: 9.75cm; }
+        .circle:nth-child(33) { bottom: 10.71cm; left: 12.75cm; }
+        .circle:nth-child(34) { bottom: 10.71cm; left: 15.75cm; }
+        .circle:nth-child(35) { bottom: 10.71cm; left: 18.75cm; }
+        .circle:nth-child(36) { bottom: 13.2cm; left: 0.75cm; }
+        .circle:nth-child(37) { bottom: 13.2cm; left: 3.75cm; }
+        .circle:nth-child(38) { bottom: 13.2cm; left: 6.75cm; }
+        .circle:nth-child(39) { bottom: 13.2cm; left: 9.75cm; }
+        .circle:nth-child(40) { bottom: 13.2cm; left: 12.75cm; }
+        .circle:nth-child(41) { bottom: 13.2cm; left: 15.75cm; }
+        .circle:nth-child(42) { bottom: 13.2cm; left: 18.75cm; }
+
+/* the views appear when the mouse hovers on it */
+        .view:nth-child(43) { left: 0cm;}
+        .view:nth-child(44) { left: 3cm;}
+        .view:nth-child(45) { left: 6cm;}
+        .view:nth-child(46) { left: 9cm;}
+        .view:nth-child(47) { left: 12cm;}
+        .view:nth-child(48) { left: 15cm;}
+        .view:nth-child(49) { left: 18cm;}
+    </style>
+</head>
+<body>
+
+</div>
+    <div class="rectangle" id="rectangle">
+        <div class="circle"id="circle1"> </div>
+        <div class="circle"id="circle2"> </div>
+        <div class="circle"id="circle3"> </div>
+        <div class="circle" id="circle4"> </div>
+        <div class="circle" id="circle5"> </div>
+        <div class="circle" id="circle6"> </div>
+        <div class="circle" id="circle7"> </div>
+        <div class="circle" id="circle8"> </div>
+        <div class="circle" id="circle9"> </div>
+        <div class="circle" id="circle10"> </div>
+
+        <div class="circle" id="circle11"> </div>
+        <div class="circle" id="circle12"> </div>
+        <div class="circle" id="circle13"> </div>
+        <div class="circle" id="circle14"> </div>
+        <div class="circle" id="circle15"> </div>
+        <div class="circle" id="circle16"> </div>
+        <div class="circle" id="circle17"> </div>
+        <div class="circle" id="circle18"> </div>
+        <div class="circle" id="circle19"> </div>
+        <div class="circle" id="circle20"> </div>
+
+        <div class="circle" id="circle21"> </div>
+        <div class="circle" id="circle22"> </div>
+        <div class="circle" id="circle23"> </div>
+        <div class="circle" id="circle24"> </div>
+        <div class="circle" id="circle25"> </div>
+        <div class="circle" id="circle26"> </div>
+        <div class="circle" id="circle27"> </div>
+        <div class="circle" id="circle28"> </div>
+        <div class="circle" id="circle29"> </div>
+        <div class="circle" id="circle30"> </div>
+
+        <div class="circle" id="circle31"> </div>
+        <div class="circle" id="circle32"> </div>
+        <div class="circle" id="circle33"> </div>
+        <div class="circle" id="circle34"> </div>
+        <div class="circle" id="circle35"> </div>
+        <div class="circle" id="circle36"> </div>
+        <div class="circle" id="circle37"> </div>
+        <div class="circle" id="circle38"> </div>
+        <div class="circle" id="circle39"> </div>
+        <div class="circle" id="circle40"> </div>
+
+        <div class="circle" id="circle41"> </div>
+        <div class="circle" id="circle42"> </div>
+
+        <div class="view" id="view1"></div>
+        <div class="view" id="view2"></div>
+        <div class="view" id="view3"></div>
+        <div class="view" id="view4"></div>
+        <div class="view" id="view5"></div>
+        <div class="view" id="view6"></div>
+        <div class="view" id="view7"></div>
+        <div class="header">
+        <div class="header">
+    <div class="players">
+        <div class="player left"><span class="color-box red"></span>{{ player1 }}</div>
+        <div class="title">Connect 4</div>
+        <div class="player right"><span class="color-box yellow"></span>{{ player2 }}</div>
+    </div>
+</div>
+
+    </div>
+
+    <script>
+        let player = 'red';
+        let player1 = "{{ player1 }}";
+        let player2 = "{{ player2 }}";
+        function changeCircleColor(view, level) {
+    let index = 7;
+    let currentRowIndex = 1;
+
+// change the colors of circles depending on the columns that are clicked
+    view.addEventListener('click', function() {
+        if (currentRowIndex <= 6) {
+            let circle = document.getElementById('circle' + level);
+            circle.classList.add(player);
+
+            setTimeout(() => {
+                     if (checkWin(1) || checkWin(7) || checkWin(6) || checkWin(8)) {
+                    let winningPlayer = player === 'red' ? player2 : player1;
+                    alert(winningPlayer + ' wins!');
+                    window.location.href = '/';
+                }
+                    }, 60);
+            setTimeout(() => {
+                tie()
+             }, 100);
+            if (player === 'red') {
+                            player = 'yellow';
+                        } else {
+                            player = 'red';
+                        }
+            currentRowIndex++;
+            level += index;
+        }
+    });
+}
+// check if the board is full
+        function tie(){
+            let count = 0;
+                for (let i = 1; i <= 42; i ++) {
+                 if(
+                     document.getElementById('circle' + i).classList.contains('red') ||
+                     document.getElementById('circle' + i).classList.contains('yellow'))
+                 {count++;}
+                }
+                if (count == 42){
+                    alert('tie game');
+                    window.location.href = '/';
+                }
+        }
+
+
+
+//check for horizontal wins, vertical wins, and diagonal wins from left to right
+        function checkWin(inc1) {
+            for (let i = 1; i <= 42; i += 7) {
+                for (let j = 0; j <= 3; j++) {
+                    let index = i + j;
+                    if (index <= 42) {
+                        if (
+                            document.getElementById('circle' + index).classList.contains('red') &&
+                            document.getElementById('circle' + (index + inc1)).classList.contains('red') &&
+                            document.getElementById('circle' + (index + 2 * inc1)).classList.contains('red') &&
+                            document.getElementById('circle' + (index + 3 * inc1)).classList.contains('red')
+                        ) {
+                            return true;
+                        }
+                        if (
+                            document.getElementById('circle' + index).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + inc1)).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + 2 * inc1)).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + 3 * inc1)).classList.contains('yellow')
+                        ) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+// check for diagonal wins from right to left
+        function checkWin2(inc1) {
+            for (let i = 7; i <= 42; i += 7) {
+                for (let j = 0; j <= 3; j++) {
+                    let index = i - j;
+                    if (index <= 42) {
+                        if (
+                            document.getElementById('circle' + index).classList.contains('red') &&
+                            document.getElementById('circle' + (index + inc1)).classList.contains('red') &&
+                            document.getElementById('circle' + (index + 2 * inc1)).classList.contains('red') &&
+                            document.getElementById('circle' + (index + 3 * inc1)).classList.contains('red')
+                        ) {
+                            return true;
+                        }
+                        if (
+                            document.getElementById('circle' + index).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + inc1)).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + 2 * inc1)).classList.contains('yellow') &&
+                            document.getElementById('circle' + (index + 3 * inc1)).classList.contains('yellow')
+                        ) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        //change colors according to their corresponding column
+        changeCircleColor(document.getElementById('view1'), 1);
+        changeCircleColor(document.getElementById('view2'), 2);
+        changeCircleColor(document.getElementById('view3'), 3);
+        changeCircleColor(document.getElementById('view4'), 4);
+        changeCircleColor(document.getElementById('view5'), 5);
+        changeCircleColor(document.getElementById('view6'), 6);
+        changeCircleColor(document.getElementById('view7'), 7);
+    </script>
+</body>
+</html>
